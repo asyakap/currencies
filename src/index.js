@@ -14,36 +14,40 @@ function populateSelects(reference) {
   let exchangeTo = document.querySelector("select#exchange-to");
   for (let i = 0; i < currencies.length; i++) {
     let opt = document.createElement('option');
-    opt.value = i;
+    opt.value = currencies[i];
     opt.innerHTML = currencies[i];
     exchangeFrom.appendChild(opt);
     opt = document.createElement('option');
-    opt.value = i;
+    opt.value = currencies[i];
     opt.innerHTML = currencies[i];
     exchangeTo.appendChild(opt);
-    
   }
 }
 
 async function callForCurrencies() {
   const response = await Currencies.getUSExchangeRates();
-  console.log(response);
   populateSelects(response);
 }
 
-async function callForAnyRate(convertFrom, convertTo, amount) {
-  const response = await Currencies.getAnyExchangeRate(convertFrom);
+async function callForAnyRate(convertTo, amount) {
+  const response = await Currencies.getUSExchangeRates();
+  console.log(response);
+  console.log(convertTo);
+  console.log(response.conversion_rates[convertTo]);
   let conversion = response.conversion_rates[convertTo] * amount;
+  console.log(conversion);
+  document.getElementById("showResponse").innerText = conversion;
   return conversion;
 }
 
 
 function handleFormSubmission(event) {
   event.preventDefault();
-  let convertFrom = document.getElementById("#exchange-from").val();
-  let convertTo = document.getElementById("#exchange-to").val();
-  let exchangeAmount = document.getElementById("#amount").val();
-  document.getElementById("showResponse").innerText = callForAnyRate(convertFrom, convertTo, exchangeAmount);
+  //let convertFrom = document.querySelector("select#exchange-from").value;
+  let convertTo = document.querySelector("select#exchange-to").value;
+  console.log(convertTo);
+  let exchangeAmount = document.querySelector("input#amount").value;
+  callForAnyRate(convertTo, exchangeAmount);
 }
 
 window.addEventListener("load", function () {
