@@ -7,16 +7,16 @@ import Currencies from './js/ExchangeRate.js';
 
 // UI Logic
 function populateSelects(reference) {
-  console.log(reference.conversion_rates);
   let currencies = Object.keys(reference.conversion_rates);
-  console.log(currencies);
   let exchangeFrom = document.querySelector("select#exchange-from");
   let exchangeTo = document.querySelector("select#exchange-to");
+  let currenciesArray = [];
   for (let i = 0; i < currencies.length; i++) {
     let opt = document.createElement('option');
     opt.value = currencies[i];
     opt.innerHTML = currencies[i];
     exchangeFrom.appendChild(opt);
+    currenciesArray.push(currencies[i]);
     opt = document.createElement('option');
     opt.value = currencies[i];
     opt.innerHTML = currencies[i];
@@ -31,11 +31,13 @@ async function callForCurrencies() {
 
 async function callForAnyRate(convertFrom, convertTo, amount) {
   const response = await Currencies.getAnyExchangeRate(convertFrom);
-  console.log(response);
-  console.log(response.conversion_rates);
+  let currencies = Object.keys(response.conversion_rates);
   let conversion = response.conversion_rates[convertTo] * amount;
-  console.log(conversion);
-  document.getElementById("showResponse").innerText = conversion;
+  if (currencies.includes(convertFrom) === false || currencies.includes(convertTo) === false) {
+    document.getElementById("showError").innerText = "Please enter an existing currency!";
+  } else {
+    document.getElementById("showResponse").innerText = conversion;
+  }
   return conversion;
 }
 
@@ -44,7 +46,7 @@ function handleFormSubmission(event) {
   event.preventDefault();
   let convertFrom = document.querySelector("select#exchange-from").value;
   let convertTo = document.querySelector("select#exchange-to").value;
-  console.log(convertTo);
+  //let convertTo = "AAA";
   let exchangeAmount = document.querySelector("input#amount").value;
   callForAnyRate(convertFrom, convertTo, exchangeAmount);
 }
