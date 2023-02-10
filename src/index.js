@@ -21,7 +21,6 @@ function printElements(response) {
 }
 
 function printError(response) {
-  document.querySelector('#showResponse').innerText = `There was an error accessing the currencies exchange data: 
-  ${error}.`;
+  document.querySelector('#showResponse').innerText = `There was an error accessing the currencies exchange data: ADD ERROR.`;
 }
 

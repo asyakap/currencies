@@ -3,6 +3,21 @@
   <title>Currency converter</title>
 </head>
 <body>
+  <h3>Select your currencies and enter your exchange sum below:</h3>
+  <form id="form-conversion">
+    <label>Convert from:
+      <select id="exchange-from"></select>
+    </label>
+    <label>To:
+      <select id="exchange-to"></select>
+    </label>
+    <br>
+    <label>Amount:
+      <input id="amount" type="number" min="0" step=".01">
+    </label>
+    <br>
+    <button type="submit" class="btn btn-warning btn-lg" id="convert">Convert</button>
+  </form>
   
 </body>
 </html>
