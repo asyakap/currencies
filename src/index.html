@@ -1,7 +1,9 @@
 <html lang="en-US">
+
 <head>
   <title>Currency converter</title>
 </head>
+
 <body>
   <h3>Select your currencies and enter your exchange sum below:</h3>
   <form id="form-conversion">
@@ -12,13 +14,16 @@
       <select id="exchange-to"></select>
     </label>
     <br>
+    <br>
     <label>Amount:
       <input id="amount" type="number" min="0" step=".01">
     </label>
     <br>
-    <button type="submit" class="btn btn-warning btn-lg" id="convert">Convert</button>
+    <br>
+    <button type="submit" id="convert">Convert</button>
   </form>
   <p id="showResponse"></p>
 
 </body>
+
 </html>
