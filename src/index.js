@@ -36,7 +36,7 @@ async function callForAnyRate(convertFrom, convertTo, amount) {
   if (currencies.includes(convertFrom) === false || currencies.includes(convertTo) === false) {
     document.getElementById("showError").innerText = "Please enter an existing currency!";
   } else {
-    document.getElementById("showResponse").innerText = conversion;
+    document.getElementById("showResponse").innerText = amount + " " + convertFrom + " equals to " + conversion + " " + convertTo;
   }
   return conversion;
 }
