@@ -1,0 +1,31 @@
+<html lang="en-US">
+
+<head>
+  <title>Currency converter</title>
+</head>
+
+<body>
+  <h3>Select your currencies and enter your exchange amount below:</h3>
+  <br>
+  <form id="form-conversion">
+    <label>Convert from:
+      <select id="exchange-from"></select>
+    </label>
+    <label>To:
+      <select id="exchange-to"></select>
+    </label>
+    <br>
+    <br>
+    <label>Amount:
+      <input id="amount" type="number" min="0" step=".01">
+    </label>
+    <br>
+    <br>
+    <button type="submit" id="convert">Convert</button>
+  </form>
+  <p id="showResponse"></p>
+  <p id="showError"></p>
+
+<script src="bundle.js"></script></body>
+
+</html>

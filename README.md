@@ -18,7 +18,7 @@ _A web application that helps user to convert currencies._
 * _Clone this repository to your desktop_
 * _Navigate to the top level of the directory_
 * _Install all Node packages and dependencies with the command ``npm install``_
-* _To make sure your application works you will need to get your own API key following these steps:
+* _To make sure your application works you will need to get your own API key following these steps:_
  1. Create an account on the Exchange Rate-API website: https://app.exchangerate-api.com/dashboard
  2. If you created an account using the Get Free Key button it will have already generated one for you, If you did not you will be able to generate one by navigating to the Api Keys tab and selecting Add New Api Key.
  3. Once you have an API key you will need to create a .env file at the top level of the project directory.
