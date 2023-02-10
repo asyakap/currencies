@@ -29,11 +29,10 @@ async function callForCurrencies() {
   populateSelects(response);
 }
 
-async function callForAnyRate(convertTo, amount) {
-  const response = await Currencies.getUSExchangeRates();
+async function callForAnyRate(convertFrom, convertTo, amount) {
+  const response = await Currencies.getAnyExchangeRate(convertFrom);
   console.log(response);
-  console.log(convertTo);
-  console.log(response.conversion_rates[convertTo]);
+  console.log(response.conversion_rates);
   let conversion = response.conversion_rates[convertTo] * amount;
   console.log(conversion);
   document.getElementById("showResponse").innerText = conversion;
@@ -43,11 +42,11 @@ async function callForAnyRate(convertTo, amount) {
 
 function handleFormSubmission(event) {
   event.preventDefault();
-  //let convertFrom = document.querySelector("select#exchange-from").value;
+  let convertFrom = document.querySelector("select#exchange-from").value;
   let convertTo = document.querySelector("select#exchange-to").value;
   console.log(convertTo);
   let exchangeAmount = document.querySelector("input#amount").value;
-  callForAnyRate(convertTo, exchangeAmount);
+  callForAnyRate(convertFrom, convertTo, exchangeAmount);
 }
 
 window.addEventListener("load", function () {

@@ -13,20 +13,19 @@ export default class Currencies {
       });
   }
 
-  static async getAnyExchangeRate(convertFrom) {
-    try {
-      const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${convertFrom}`);
-      if (response.status === 404) {
-        throw Error("Please enter an existing currency!");
-      }
-      if (!response.ok) {
-        throw Error(response.status);
-      }
-      return await response.json();
-    } catch (error) {
-      document.getElementById('#showResponse').innerHTML = error;
-      document.getElemenetById('#output-area').show();
-      document.getElemenetById('#showResponse').show();
-    }
+  static getAnyExchangeRate(convertFrom) {
+    return fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${convertFrom}`)
+      .then(function (response) {
+        if (response.status === 404) {
+          throw Error("Please enter an existing currency!");
+        }
+        if (!response.ok) {
+          throw Error(response.status);
+        }
+        return response.json();
+      })
+      .catch(function (error) {
+        document.getElementById('#showResponse').innerHTML = error;
+      });
   }
 }
